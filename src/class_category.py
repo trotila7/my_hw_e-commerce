@@ -11,7 +11,7 @@ class Category:
     def __init__(self, name, description, goods):
         self.name = name
         self.description = description
-        self.goods = goods
+        self.goods = list(goods)
 
         Category.number_of_category += 1
         Category.unique_products.update(self.goods)
