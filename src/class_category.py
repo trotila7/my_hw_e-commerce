@@ -18,7 +18,7 @@ class Category:
         Category.number_of_unique_products = len(list(Category.unique_products))
 
 
-fruits_1 = Category('fruit', 'Свежие фрукты', ['apple', 'apple', 'orange'])
+#fruits_1 = Category('fruit', 'Свежие фрукты', ['apple', 'apple', 'orange'])
 
 if __name__ == "__main__":
     print(Category.number_of_category)
