@@ -29,3 +29,7 @@ class Product:
             self._price = value
         else:
             print("Цена введена некорректная. Цена должна быть больше нуля.")
+
+    @price.deleter
+    def price(self):
+        self.price = None
