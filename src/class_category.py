@@ -20,32 +20,30 @@ class Category:
         Category.unique_products.update(self.__goods)
         Category.number_of_unique_products = len(list(Category.unique_products))
 
-    def new_goods(self, new_product):
-        """ Метод, который позволяет добавить новые товары в список товаров категории """
-        list_new_product = new_product.split(" ")
-        return self.__goods.extend(list_new_product)
-
     @property
-    def view_product(self):
-        """ Метод, который позволяет просмотреть товары в категории """
-        list_goods = self.__goods
-        return list_goods
+    def goods(self):
+        return self.__goods
 
-    @property
-    def view_prod(self, name):
-        for good in self.__goods:
-            if good == Product.name_prod:
-                print(Product.price_and_quan)
-            return "Что-то не то"
+    def add_product(self, product):
+        """ Метод, который позволяет добавить новый товар в список товаров """
+        if isinstance(product, Product):
+            self.__goods.append(product)
 
+    def goods_info(self):
+        for product in self.__goods:
+            print(product)
 
-fruits_1 = Category('fruit', 'Свежие фрукты', ['Яблоко', 'Апельсин'])
-new_product = "peach banana"
+    # @property
+    # def view_product(self):
+    #    """ Метод, который позволяет просмотреть товары в категории """
+    #    list_goods = self.__goods
+    #   return list_goods
+
 
 if __name__ == "__main__":
-    # print(Category.number_of_category)
-    # print(Category.number_of_unique_products)
-    print(fruits_1.view_product)
-    # fruits_1.new_goods(new_product)
-    # print(fruits_1.view_product)
-    print()
+    apple = Product.create_product('Яблоко', 'Зеленое яблоко', 11.4, 150)
+    orange = Product.create_product("Апельсин", "Сочный апельсин", 14.6, 300)
+    fruits = Category("Фрукты", "Свежие фрукты", [])
+    fruits.add_product(apple)
+    fruits.add_product(orange)
+    print(fruits.goods_info())

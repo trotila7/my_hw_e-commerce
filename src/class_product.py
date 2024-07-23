@@ -12,15 +12,11 @@ class Product:
 
     @staticmethod
     def create_product(name, description, price, quantity_in_stock):
+        """ Метод, который создает товар и возвращает объект, который можно добавлять в список товаров """
         return Product(name, description, price, quantity_in_stock)
 
     @property
-    def name_prod(self):
-        name_prod = self.name
-        return name_prod
-
-    @property
-    def product_info(self):
+    def info_product(self):
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity_in_stock} шт."
 
     @property
@@ -33,10 +29,3 @@ class Product:
             self._price = value
         else:
             print("Цена введена некорректная. Цена должна быть больше нуля.")
-
-
-apple = Product('Яблоко', 'Зеленое яблоко', 11.4, 150)
-orange = Product("Апельсин", "Сочный апельсин", 14.6, 300)
-
-if __name__ == "__main__":
-    print(apple.price_and_quan)
