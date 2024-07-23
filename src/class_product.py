@@ -16,10 +16,6 @@ class Product:
         return Product(name, description, price, quantity_in_stock)
 
     @property
-    def info_product(self):
-        return f"{self.name}, {self.price} руб. Остаток: {self.quantity_in_stock} шт."
-
-    @property
     def price(self):
         return self._price
 
@@ -32,4 +28,13 @@ class Product:
 
     @price.deleter
     def price(self):
+        print(f"Цена товара '{self.name}' удалена")
         self.price = None
+
+
+if __name__ == "__main__":
+    apple = Product.create_product('Яблоко', 'Зеленое яблоко', 11.4, 150)
+    orange = Product.create_product("Апельсин", "Сочный апельсин", 14.6, 300)
+    apple.price = 100
+    print(apple.price)
+    # apple.price = -50

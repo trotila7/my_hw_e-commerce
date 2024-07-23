@@ -29,9 +29,12 @@ class Category:
         if isinstance(product, Product):
             self.__goods.append(product)
 
+    @property
     def goods_info(self):
+        result = []
         for product in self.__goods:
-            print(product)
+            result.append(f"{product.name}, {product.price} руб. Остаток: {product.quantity_in_stock} шт.")
+        return '\n'.join(result)
 
     # @property
     # def view_product(self):
@@ -46,4 +49,4 @@ if __name__ == "__main__":
     fruits = Category("Фрукты", "Свежие фрукты", [])
     fruits.add_product(apple)
     fruits.add_product(orange)
-    print(fruits.goods_info())
+    print(fruits.goods_info)
