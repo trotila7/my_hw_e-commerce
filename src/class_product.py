@@ -76,9 +76,18 @@ class LawnGrass(Product):
         self.made_in = made_in
         self.germination = germination
 
+    @classmethod
+    def create_product(cls, name, description, price, quantity_in_stock, color, made_in, germination):
+        if cls == LawnGrass:
+            """ Метод, который создает товар и возвращает объект, который можно добавлять в список товаров """
+            return cls(name, description, price, quantity_in_stock, color, made_in, germination)
+        return super().create_product(name, description, price, quantity_in_stock, color)
+
 
 if __name__ == "__main__":
     apple = Product.create_product('Яблоко', 'Зеленое яблоко', 11.4, 150, 'зеленый')
     orange = Product.create_product("Апельсин", "Сочный апельсин", 14.6, 300, 'оранжевый')
     phone = Smartphone.create_product('phone 1', 'Описание', 178999.4, 50, 'black', 12.4, 'new', 128)
+    ordinary_grass = LawnGrass.create_product('Обычная трава', 'Зеленая трава', 500, 1, 'green', 'Russia', 2)
     print(phone)
+    print(ordinary_grass)
