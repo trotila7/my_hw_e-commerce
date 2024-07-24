@@ -31,10 +31,14 @@ class Category:
 
     @property
     def goods_info(self):
-        result = []
-        for product in self.__goods:
-            result.append(f"{product.name}, {product.price} руб. Остаток: {product.quantity_in_stock} шт.")
+        result = [str(product) for product in self.__goods]
         return '\n'.join(result)
+
+    # def goods_info(self):
+    #    result = []
+    #    for product in self.__goods:
+    #        result.append(f"{product.name}, {product.price} руб. Остаток: {product.quantity_in_stock} шт.")
+    #    return '\n'.join(result)
 
     # @property
     # def view_product(self):
