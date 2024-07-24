@@ -49,8 +49,8 @@ class Category:
 
 
 if __name__ == "__main__":
-    apple = Product.create_product('Яблоко', 'Зеленое яблоко', 11.4, 150)
-    orange = Product.create_product("Апельсин", "Сочный апельсин", 14.6, 300)
+    apple = Product.create_product('Яблоко', 'Зеленое яблоко', 11.4, 150, 'зеленый')
+    orange = Product.create_product("Апельсин", "Сочный апельсин", 14.6, 300, 'оранжевый')
     fruits = Category("Фрукты", "Свежие фрукты", [])
     fruits.add_product(apple)
     fruits.add_product(orange)
