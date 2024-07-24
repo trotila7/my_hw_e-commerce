@@ -17,19 +17,19 @@ class Product:
 
     @property
     def price(self):
-        return self.price
+        return self._price
 
     @price.setter
     def price(self, value):
         if value > 0:
-            self.price = value
+            self._price = value
         else:
             print("Цена введена некорректная. Цена должна быть больше нуля.")
 
     @price.deleter
     def price(self):
         print(f"Цена товара '{self.name}' удалена")
-        self.price = None
+        self._price = None
 
 
 if __name__ == "__main__":
