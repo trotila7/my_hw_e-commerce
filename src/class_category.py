@@ -29,11 +29,6 @@ class Category:
         if isinstance(product, Product):
             self.__goods.append(product)
 
-    @property
-    def goods_info(self):
-        result = [str(product) for product in self.__goods]
-        return '\n'.join(result)
-
     def __len__(self):
         return sum(product.quantity_in_stock for product in self.__goods)  # считаем кол-во продуктов в категории
 
@@ -41,17 +36,16 @@ class Category:
         total_quantity_in_stock = len(self)
         return f'{self.name}, количество продуктов: {total_quantity_in_stock} шт.'
 
+    @property
+    def goods_info(self):
+        result = [str(product) for product in self.__goods]
+        return '\n'.join(result)
+
     # def goods_info(self):
     #    result = []
     #    for product in self.__goods:
     #        result.append(f"{product.name}, {product.price} руб. Остаток: {product.quantity_in_stock} шт.")
     #    return '\n'.join(result)
-
-    # @property
-    # def view_product(self):
-    #    """ Метод, который позволяет просмотреть товары в категории """
-    #    list_goods = self.__goods
-    #   return list_goods
 
 
 if __name__ == "__main__":
