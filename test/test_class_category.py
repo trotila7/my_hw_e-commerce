@@ -51,3 +51,25 @@ def test_add_product(category_no_sugar, product_1, product_2):
     category_no_sugar.add_product(product_2)
     print(dir(category_no_sugar))
     assert len(category_no_sugar._Category__goods) == 2  # не знаю как тут использовать артибут goods
+
+
+@pytest.fixture()
+def len_goods(product_1, product_2):
+    return 20
+
+
+def test_len(len_goods, category_no_sugar, product_1, product_2):
+    category_no_sugar.add_product(product_1)
+    category_no_sugar.add_product(product_2)
+    assert len(category_no_sugar) == len_goods
+
+
+@pytest.fixture()
+def str_category(category_no_sugar):
+    return 'no_sugar, количество продуктов: 20 шт.'
+
+
+def test_str(str_category, category_no_sugar, product_1, product_2):
+    category_no_sugar.add_product(product_1)
+    category_no_sugar.add_product(product_2)
+    assert str(category_no_sugar) == str_category
