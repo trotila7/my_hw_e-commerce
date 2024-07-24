@@ -34,6 +34,13 @@ class Category:
         result = [str(product) for product in self.__goods]
         return '\n'.join(result)
 
+    def __len__(self):
+        return sum(product.quantity_in_stock for product in self.__goods)  # считаем кол-во продуктов в категории
+
+    def __str__(self):
+        total_quantity_in_stock = len(self)
+        return f'{self.name}, количество продуктов: {total_quantity_in_stock} шт.'
+
     # def goods_info(self):
     #    result = []
     #    for product in self.__goods:
@@ -54,3 +61,4 @@ if __name__ == "__main__":
     fruits.add_product(apple)
     fruits.add_product(orange)
     print(fruits.goods_info)
+    print(fruits)
