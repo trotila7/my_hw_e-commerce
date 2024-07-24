@@ -10,6 +10,9 @@ class Product:
         self.price = price
         self.quantity_in_stock = quantity_in_stock
 
+    def __str__(self):
+        return f'{self.name}, {self.price} руб. Остаток: {self.quantity_in_stock} шт.'
+
     @classmethod
     def create_product(cls, name, description, price, quantity_in_stock):
         """ Метод, который создает товар и возвращает объект, который можно добавлять в список товаров """
