@@ -18,6 +18,7 @@ class Product(ABC, MixinLog):
     def __init__(self, name, description, price, quantity_in_stock, color):
         self.name = name
         self.description = description
+        self._price = None
         self.price = price
         self.quantity_in_stock = quantity_in_stock
         self.color = color
@@ -29,11 +30,7 @@ class Product(ABC, MixinLog):
 
     @abstractmethod
     def __add__(self, other):
-        if isinstance(other, self.__class__):
-            total_value_self = self.price * self.quantity_in_stock
-            total_value_other = other.price * other.quantity_in_stock
-            return total_value_self + total_value_other
-        raise TypeError
+        pass
 
     @classmethod
     @abstractmethod
@@ -41,20 +38,20 @@ class Product(ABC, MixinLog):
         pass
 
     @property
-    def new_price(self):
-        return self.price
+    def price(self):
+        return self._price
 
-    @new_price.setter
-    def new_price(self, new_value):
+    @price.setter
+    def price(self, new_value):
         if new_value > 0:
-            self.price = new_value
+            self._price = new_value
         else:
             print("Цена введена некорректная. Цена должна быть больше нуля.")
 
-    @new_price.deleter
-    def new_price(self) -> None:
+    @price.deleter
+    def price(self) -> None:
         print(f"Цена товара '{self.name}' удалена")
-        self.price = 0
+        self._price = None
 
 
 class Smartphone(Product):
@@ -73,7 +70,11 @@ class Smartphone(Product):
                 f"Остаток: {self.quantity_in_stock} шт.")
 
     def __add__(self, other):
-        return super().__add__(other)
+        if isinstance(other, self.__class__):
+            total_value_self = self.price * self.quantity_in_stock
+            total_value_other = other.price * other.quantity_in_stock
+            return total_value_self + total_value_other
+        raise TypeError
 
     @classmethod
     def create_product(cls, name, description, price, quantity_in_stock, color, performance, model,
@@ -97,7 +98,11 @@ class LawnGrass(Product):
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity_in_stock} шт."
 
     def __add__(self, other):
-        return super().__add__(other)
+        if isinstance(other, self.__class__):
+            total_value_self = self.price * self.quantity_in_stock
+            total_value_other = other.price * other.quantity_in_stock
+            return total_value_self + total_value_other
+        raise TypeError
 
     @classmethod
     def create_product(cls, name, description, price, quantity_in_stock, color, made_in, germination):
@@ -112,3 +117,5 @@ if __name__ == "__main__":
     ordinary_grass = LawnGrass.create_product("Обычная трава", "Зеленая трава", 500, 1, "green", "Russia", 2)
     print(phone)
     print(ordinary_grass)
+    phone.price = -40
+    print(phone.price)

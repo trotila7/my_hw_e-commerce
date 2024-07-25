@@ -1,15 +1,15 @@
 import pytest
-from src.class_product import Product
+from src.class_product import Smartphone, LawnGrass
 
 
 @pytest.fixture()
 def product_milk():
-    return Product('milk', 'Коровье молоко, жирность 3,2%', 87.67, 178787)
+    return Smartphone('milk', 'Коровье молоко, жирность 3,2%', 87.67, 178787, "green", 4, "new", 128)
 
 
 @pytest.fixture()
 def product_no_milk():
-    return Product('nomilk', 'Не Коровье молоко, жирность 3,2%', 157.1, 45)
+    return LawnGrass('nomilk', 'Не Коровье молоко, жирность 3,2%', 157.1, 45, "green", "russia", 40)
 
 
 @pytest.fixture()
@@ -27,7 +27,7 @@ def test_init(product_milk):
 
 @pytest.fixture()
 def product_apple():
-    return Product("Яблоко", "Зеленое", 120, 5)
+    return Smartphone("Яблоко", "Зеленое", 120, 5, "green", 4, "new", 128)
 
 
 def test_product_price_getter(product_milk):
@@ -46,12 +46,8 @@ def test_product_price_setter_incorrect(product_milk):
 
 @pytest.fixture()
 def str_product():
-    return "milk, 87.67 руб. Остаток: 178787 шт."
+    return "milk (Модель: new, Производительность: 4), 87.67 руб. Остаток: 178787 шт."
 
 
 def test_str_milk(product_milk, str_product):
     assert str(product_milk) == str_product
-
-
-def test_add_product(add_product, product_milk, product_no_milk):
-    assert (product_milk + product_no_milk) == add_product

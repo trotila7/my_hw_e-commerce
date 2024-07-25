@@ -1,6 +1,6 @@
 import pytest
 from src.class_category import Category
-from src.class_product import Product
+from src.class_product import Smartphone, LawnGrass
 
 
 @pytest.fixture()
@@ -32,18 +32,18 @@ def test_init_2(category_no_sugar):
 
 @pytest.fixture
 def product_1():
-    return Product.create_product("Батончик", "Батончик без сахара", 80, 15)
+    return Smartphone.create_product('Яблоко', 'Зеленое яблоко', 11.4, 150, 'зеленый', 11, "fdf", 128)
 
 
 @pytest.fixture
 def product_2():
-    return Product.create_product("Не батончик", "Не батончик без сахара", 120, 5)
+    return LawnGrass.create_product("Трава", "Зеленая", 14.6, 300, 'зеленая', "Russia", 50)
 
 
 def test_goods_info(category_no_sugar, product_1):
     category_no_sugar.add_product(product_1)
     result = category_no_sugar.goods_info
-    assert result == "Батончик, 80 руб. Остаток: 15 шт."
+    assert result == "Яблоко (Модель: fdf, Производительность: 11), 11.4 руб. Остаток: 150 шт."
 
 
 def test_add_product(category_no_sugar, product_1, product_2):
@@ -55,7 +55,7 @@ def test_add_product(category_no_sugar, product_1, product_2):
 
 @pytest.fixture()
 def len_goods(product_1, product_2):
-    return 20
+    return 450
 
 
 def test_len(len_goods, category_no_sugar, product_1, product_2):
@@ -66,7 +66,7 @@ def test_len(len_goods, category_no_sugar, product_1, product_2):
 
 @pytest.fixture()
 def str_category(category_no_sugar):
-    return 'no_sugar, количество продуктов: 20 шт.'
+    return 'no_sugar, количество продуктов: 450 шт.'
 
 
 def test_str(str_category, category_no_sugar, product_1, product_2):

@@ -1,4 +1,4 @@
-from src.class_product import Product
+from src.class_product import Product, Smartphone, LawnGrass
 
 
 class Category:
@@ -49,10 +49,10 @@ class Category:
 
 
 if __name__ == "__main__":
-    apple = Product.create_product('Яблоко', 'Зеленое яблоко', 11.4, 150, 'зеленый')
-    orange = Product.create_product("Апельсин", "Сочный апельсин", 14.6, 300, 'оранжевый')
-    fruits = Category("Фрукты", "Свежие фрукты", [])
-    fruits.add_product(apple)
-    fruits.add_product(orange)
-    print(fruits.goods_info)
-    print(fruits)
+    apple = Smartphone.create_product('Яблоко', 'Зеленое яблоко', 11.4, 150, 'зеленый', 11, "fdf", 128)
+    orange = LawnGrass.create_product("Трава", "Зеленая", 14.6, 300, 'зеленая', "Russia", 50)
+    all_goods = Category("Товары", "Все товары", [])
+    all_goods.add_product(apple)
+    all_goods.add_product(orange)
+    print(all_goods.goods_info)
+    print(all_goods)
