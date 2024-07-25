@@ -30,20 +30,20 @@ class Product:
         raise NotImplementedError("Создание продукта для этого класса не поддерживается")
 
     @property
-    def price(self):
-        return self._price
+    def new_price(self):
+        return self.price
 
-    @price.setter
-    def price(self, value):
-        if value > 0:
-            self._price = value
+    @new_price.setter
+    def new_price(self, new_value):
+        if new_value > 0:
+            self.price = new_value
         else:
             print("Цена введена некорректная. Цена должна быть больше нуля.")
 
-    @price.deleter
-    def price(self):
+    @new_price.deleter
+    def new_price(self) -> None:
         print(f"Цена товара '{self.name}' удалена")
-        self._price = None
+        self.price = 0
 
 
 class Smartphone(Product):
