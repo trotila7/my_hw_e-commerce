@@ -1,6 +1,21 @@
 from abc import ABC, abstractmethod
 
 
+class MyShop(ABC):
+    @abstractmethod
+    def __str__(self):
+        pass
+
+    @abstractmethod
+    def __add__(self, other):
+        pass
+
+    @classmethod
+    @abstractmethod
+    def create_product(cls, *args):
+        pass
+
+
 class MixinLog:
     def __repr__(self):
         class_name = self.__class__.__name__
@@ -8,7 +23,7 @@ class MixinLog:
         return f"Создан объект класса {class_name}, с параметрами: {', '.join(params)}"
 
 
-class Product(ABC, MixinLog):
+class Product(MyShop, MixinLog):
     name: str
     description: str
     price: float
@@ -24,18 +39,22 @@ class Product(ABC, MixinLog):
         self.color = color
         print(self.__repr__())
 
-    @abstractmethod
     def __str__(self):
-        pass
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity_in_stock} шт."
 
-    @abstractmethod
     def __add__(self, other):
-        pass
+        if isinstance(other, self.__class__):
+            total_value_self = self.price * self.quantity_in_stock
+            total_value_other = other.price * other.quantity_in_stock
+            return total_value_self + total_value_other
+        raise TypeError
 
     @classmethod
-    @abstractmethod
-    def create_product(cls, *args):
-        pass
+    def create_product(cls, name, description, price, quantity_in_stock, color):
+        if cls == Product:
+            """Метод, который создает товар и возвращает объект, который можно добавлять в список товаров"""
+            return cls(name, description, price, quantity_in_stock, color)
+        return "Объект не создан"
 
     @property
     def price(self):
@@ -77,11 +96,10 @@ class Smartphone(Product):
         raise TypeError
 
     @classmethod
-    def create_product(cls, name, description, price, quantity_in_stock, color, performance, model,
-                       internal_memory):
+    def create_product(cls, *args):
         if cls == Smartphone:
             """Метод, который создает товар и возвращает объект, который можно добавлять в список товаров"""
-            return cls(name, description, price, quantity_in_stock, color, performance, model, internal_memory)
+            return cls(*args)
         return "Объект не создан"
 
 
@@ -105,10 +123,10 @@ class LawnGrass(Product):
         raise TypeError
 
     @classmethod
-    def create_product(cls, name, description, price, quantity_in_stock, color, made_in, germination):
+    def create_product(cls, *args):
         if cls == LawnGrass:
             """Метод, который создает товар и возвращает объект, который можно добавлять в список товаров"""
-            return cls(name, description, price, quantity_in_stock, color, made_in, germination)
+            return cls(*args)
         return "Объект не создан"
 
 
