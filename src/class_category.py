@@ -27,7 +27,10 @@ class Category:
     def add_product(self, product):
         """ Метод, который позволяет добавить новый товар в список товаров """
         if isinstance(product, Product):
-            self.__goods.append(product)
+            raise TypeError("Можно добавить только объекты типа Product.")
+        if product.quantity_in_stock <= 0:
+            raise ValueError("Товар с нулевым или отрицательным количеством не может быть добавлен.")
+        self.__goods.append(product)
 
     def __len__(self):
         return sum(product.quantity_in_stock for product in self.__goods)  # считаем кол-во продуктов в категории

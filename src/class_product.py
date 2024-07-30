@@ -31,6 +31,8 @@ class Product(MyShop, MixinLog):
     color: str
 
     def __init__(self, name, description, price, quantity_in_stock, color):
+        if quantity_in_stock <= 0:
+            raise ValueError("Товар с нулевым или отрицательным количеством не может быть добавлен.")
         self.name = name
         self.description = description
         self._price = None
