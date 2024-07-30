@@ -56,4 +56,4 @@ def test_str_milk(product_milk, str_product):
 def test_add_product_with_zero_quantity():
     # Создаем продукт с нулевым количеством
     with pytest.raises(ValueError, match="Товар с нулевым или отрицательным количеством не может быть добавлен."):
-        product = Product("Продукт", "Описание продукта", 100, 0, "fdf")
+        Product("Продукт", "Описание продукта", 100, 0, "fdf")
