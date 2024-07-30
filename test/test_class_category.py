@@ -73,3 +73,11 @@ def test_str(str_category, category_no_sugar, product_1, product_2):
     category_no_sugar.add_product(product_1)
     category_no_sugar.add_product(product_2)
     assert str(category_no_sugar) == str_category
+
+
+def test_average_price_with_products(category_no_sugar, product_1, product_2):
+    category_no_sugar.add_product(product_1)
+    category_no_sugar.add_product(product_2)
+    expected_avg_price = round((150 * 11.4 + 300 * 14.6) / (150 + 300), 2)
+    result = f"Средний ценник всех товаров {expected_avg_price} руб."
+    assert Category.average_price(category_no_sugar) == result
